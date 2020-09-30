@@ -27,8 +27,17 @@ from panda3d.core import PGButton, MouseButton
 DGG.MWUP = PGButton.getPressPrefix() + MouseButton.wheel_up().getName() + '-'
 DGG.MWDOWN = PGButton.getPressPrefix() + MouseButton.wheel_down().getName() + '-'
 
+defaultIcons = {
+    'reload': "icons/Reload.png",
+    'up': "icons/FolderUp.png",
+    'new': "icons/FolderNew.png",
+    'showHidden': "icons/FolderShowHidden.png",
+    'folder': "icons/Folder.png",
+    'file': "icons/File.png"
+    }
+
 class DirectFolderBrowser(DirectObject):
-    def __init__(self, command, fileBrowser=False, defaultPath="~", defaultFilename="unnamed.txt", fileExtensions=[], tooltip=None):
+    def __init__(self, command, fileBrowser=False, defaultPath="~", defaultFilename="unnamed.txt", fileExtensions=[], tooltip=None, icons=defaultIcons):
         """
         A simple file and folder browser
 
@@ -43,6 +52,7 @@ class DirectFolderBrowser(DirectObject):
         self.command = command
         self.showFiles = fileBrowser
         self.fileExtensions = fileExtensions
+        self.icons = icons
         self.showHidden = False
 
         self.currentPath = os.path.expanduser(defaultPath)
@@ -95,7 +105,7 @@ class DirectFolderBrowser(DirectObject):
             frameSize=(-14, 14, -10, 18),
             pos=LPoint3(x, 0, self.screenHeightPxHalf - 25),
             command=self.folderReload,
-            image="icons/Reload.png",
+            image=self.icons['reload'],
             image_scale=14,
             image_pos=(0,0,4),
         )
@@ -115,7 +125,7 @@ class DirectFolderBrowser(DirectObject):
             frameSize=(-14, 14, -10, 18),
             pos=LPoint3(x, 0, self.screenHeightPxHalf - 25),
             command=self.folderUp,
-            image="icons/FolderUp.png",
+            image=self.icons['up'],
             image_scale=14,
             image_pos=(0,0,4),
         )
@@ -135,7 +145,7 @@ class DirectFolderBrowser(DirectObject):
             frameSize=(-14, 14, -10, 18),
             pos=LPoint3(x, 0, self.screenHeightPxHalf - 25),
             command=self.folderNew,
-            image="icons/FolderNew.png",
+            image=self.icons['new'],
             image_scale=14,
             image_pos=(0,0,4),
         )
@@ -155,7 +165,7 @@ class DirectFolderBrowser(DirectObject):
             frameSize=(-14, 14, -10, 18),
             pos=LPoint3(x, 0, self.screenHeightPxHalf - 25),
             command=self.folderShowHidden,
-            image="icons/FolderShowHidden.png",
+            image=self.icons['showHidden'],
             image_scale=14,
             image_pos=(0,0,4),
         )
@@ -440,7 +450,7 @@ class DirectFolderBrowser(DirectObject):
                 name += "..."
         btn = DirectButton(
             parent=self.container.getCanvas(),
-            image="icons/Folder.png",
+            image=self.icons['folder'],
             image_scale=35,
             relief=1,
             frameColor = (
@@ -471,7 +481,7 @@ class DirectFolderBrowser(DirectObject):
                 name += "..."
         btn = DirectButton(
             parent=self.container.getCanvas(),
-            image="icons/File.png",
+            image=self.icons['file'],
             image_scale=35,
             relief=1,
             frameColor = (
@@ -500,7 +510,7 @@ class DirectFolderBrowser(DirectObject):
             name = name[:-1]
         lbl = DirectLabel(
             parent=self.container.getCanvas(),
-            image="icons/File.png",
+            image=self.icons['file'],
             image_scale=35,
             image_color=(0.9,0.5,0.5,1),
             relief=1,
