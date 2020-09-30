@@ -15,9 +15,9 @@ from direct.gui.DirectScrolledFrame import DirectScrolledFrame
 from direct.gui.DirectButton import DirectButton
 from direct.gui.DirectLabel import DirectLabel
 from panda3d.core import (
-    LPoint3f,
-    LVecBase3f,
-    LVecBase4f,
+    LPoint3,
+    LVecBase3,
+    LVecBase4,
     TransparencyAttrib,
     TextNode
 )
@@ -59,7 +59,7 @@ class DirectFolderBrowser(DirectObject):
             relief=1,
             frameSize=(-self.screenWidthPxHalf,self.screenWidthPxHalf,-self.screenHeightPxHalf,self.screenHeightPxHalf),
             frameColor=(1, 1, 1, 1),
-            pos=LPoint3f(base.getSize()[0]/2, 0, -base.getSize()[1]/2),
+            pos=LPoint3(base.getSize()[0]/2, 0, -base.getSize()[1]/2),
             parent=base.pixel2d,
             state=DGG.NORMAL,
         )
@@ -72,7 +72,7 @@ class DirectFolderBrowser(DirectObject):
             relief=DGG.SUNKEN,
             frameColor=(1, 1, 1, 1),
             pad=(0.2, 0.2),
-            pos=LPoint3f(-self.screenWidthPxHalf + 15, 0, self.screenHeightPxHalf - 25),
+            pos=LPoint3(-self.screenWidthPxHalf + 15, 0, self.screenHeightPxHalf - 25),
             scale=12,
             width=self.pathEntryWidth/12,
             overflow=True,
@@ -93,7 +93,7 @@ class DirectFolderBrowser(DirectObject):
                 (0.8, 0.8, 1, 1), # Hover
                 (0.5, 0.5, 0.5, 1)), # Disabled
             frameSize=(-14, 14, -10, 18),
-            pos=LPoint3f(x, 0, self.screenHeightPxHalf - 25),
+            pos=LPoint3(x, 0, self.screenHeightPxHalf - 25),
             command=self.folderReload,
             image="icons/Reload.png",
             image_scale=14,
@@ -113,7 +113,7 @@ class DirectFolderBrowser(DirectObject):
                 (0.8, 0.8, 1, 1), # Hover
                 (0.5, 0.5, 0.5, 1)), # Disabled
             frameSize=(-14, 14, -10, 18),
-            pos=LPoint3f(x, 0, self.screenHeightPxHalf - 25),
+            pos=LPoint3(x, 0, self.screenHeightPxHalf - 25),
             command=self.folderUp,
             image="icons/FolderUp.png",
             image_scale=14,
@@ -133,7 +133,7 @@ class DirectFolderBrowser(DirectObject):
                 (0.8, 0.8, 1, 1), # Hover
                 (0.5, 0.5, 0.5, 1)), # Disabled
             frameSize=(-14, 14, -10, 18),
-            pos=LPoint3f(x, 0, self.screenHeightPxHalf - 25),
+            pos=LPoint3(x, 0, self.screenHeightPxHalf - 25),
             command=self.folderNew,
             image="icons/FolderNew.png",
             image_scale=14,
@@ -153,7 +153,7 @@ class DirectFolderBrowser(DirectObject):
                 (0.8, 0.8, 1, 1), # Hover
                 (0.5, 0.5, 0.5, 1)), # Disabled
             frameSize=(-14, 14, -10, 18),
-            pos=LPoint3f(x, 0, self.screenHeightPxHalf - 25),
+            pos=LPoint3(x, 0, self.screenHeightPxHalf - 25),
             command=self.folderShowHidden,
             image="icons/FolderShowHidden.png",
             image_scale=14,
@@ -175,7 +175,7 @@ class DirectFolderBrowser(DirectObject):
             frameColor=(1, 1, 1, 1),
             frameSize=(-self.screenWidthPxHalf+10, self.screenWidthPxHalf-10, -self.screenHeightPxHalf+50, self.screenHeightPxHalf-50),
             canvasSize=(-self.screenWidthPxHalf+31, self.screenWidthPxHalf-10, -self.screenHeightPxHalf+50, self.screenHeightPxHalf-50),
-            pos=LPoint3f(0, 0, 0),
+            pos=LPoint3(0, 0, 0),
             parent=self.mainFrame,
             scrollBarWidth=20,
             verticalScroll_scrollSize=20,
@@ -205,7 +205,7 @@ class DirectFolderBrowser(DirectObject):
                 (0.8, 0.8, 1, 1), # Hover
                 (0.5, 0.5, 0.5, 1)), # Disabled
             frameSize=(-45, 45, -6, 14),
-            pos=LPoint3f(self.screenWidthPxHalf-160, 0, -self.screenHeightPxHalf+25),
+            pos=LPoint3(self.screenWidthPxHalf-160, 0, -self.screenHeightPxHalf+25),
             text = "ok",
             text_scale=12,
             command=command,
@@ -220,7 +220,7 @@ class DirectFolderBrowser(DirectObject):
                 (0.8, 0.8, 1, 1), # Hover
                 (0.5, 0.5, 0.5, 1)), # Disabled
             frameSize=(-45, 45, -6, 14),
-            pos=LPoint3f(self.screenWidthPxHalf-55, 0, -self.screenHeightPxHalf+25),
+            pos=LPoint3(self.screenWidthPxHalf-55, 0, -self.screenHeightPxHalf+25),
             text = "Cancel",
             text_scale=12,
             command=command,
@@ -233,7 +233,7 @@ class DirectFolderBrowser(DirectObject):
                 relief=DGG.SUNKEN,
                 frameColor=(1, 1, 1, 1),
                 pad=(0.2, 0.2),
-                pos=LPoint3f(-self.screenWidthPxHalf+25, 0, -self.screenHeightPxHalf+25),
+                pos=LPoint3(-self.screenWidthPxHalf+25, 0, -self.screenHeightPxHalf+25),
                 scale=12,
                 width=200/12,
                 overflow=True,
@@ -249,7 +249,7 @@ class DirectFolderBrowser(DirectObject):
             parent=self.mainFrame,
             relief=1,
             frameSize=(-self.screenWidthPxHalf+10,self.screenWidthPxHalf-10,-20,20),
-            pos=LPoint3f(0, 0, self.screenHeightPxHalf-55),
+            pos=LPoint3(0, 0, self.screenHeightPxHalf-55),
             frameColor=(0.5,0.5,0.5,1),
         )
         self.txtNewFolderName = DirectLabel(
@@ -265,7 +265,7 @@ class DirectFolderBrowser(DirectObject):
             relief=DGG.SUNKEN,
             frameColor=(1, 1, 1, 1),
             pad=(0.2, 0.2),
-            pos=LPoint3f(-self.screenWidthPxHalf+25 + self.txtNewFolderName.getWidth(), 0, -4),
+            pos=LPoint3(-self.screenWidthPxHalf+25 + self.txtNewFolderName.getWidth(), 0, -4),
             scale=12,
             width=((self.screenWidthPxHalf-25)*2-self.txtNewFolderName.getWidth() - 100)/12,
             overflow=True,
@@ -285,7 +285,7 @@ class DirectFolderBrowser(DirectObject):
                 (0.8, 0.8, 1, 1), # Hover
                 (0.5, 0.5, 0.5, 1)), # Disabled
             frameSize=(-45, 45, -6, 14),
-            pos=LPoint3f(self.screenWidthPxHalf-65, 0, -4),
+            pos=LPoint3(self.screenWidthPxHalf-65, 0, -4),
             text = "Create",
             text_scale=12,
             command=self.folderCreate,
@@ -449,7 +449,7 @@ class DirectFolderBrowser(DirectObject):
                 (0.9, 0.9, 1, 1), # Hover
                 (0.5, 0.5, 0.5, 1)), # Disabled
             frameSize=(-40, 40, -40, 40),
-            pos=LPoint3f(xPos, 0, zPos),
+            pos=LPoint3(xPos, 0, zPos),
             text = name,
             text_scale=12,
             text_pos=(0,-40),
@@ -480,7 +480,7 @@ class DirectFolderBrowser(DirectObject):
                 (0.9, 0.9, 1, 1), # Hover
                 (0.5, 0.5, 0.5, 1)), # Disabled
             frameSize=(-40, 40, -40, 40),
-            pos=LPoint3f(xPos, 0, zPos),
+            pos=LPoint3(xPos, 0, zPos),
             text = name,
             text_scale=12,
             text_pos=(0,-40),
@@ -506,7 +506,7 @@ class DirectFolderBrowser(DirectObject):
             relief=1,
             frameColor = (0.7, 0.7, 0.7, 0),
             frameSize=(-40, 40, -40, 40),
-            pos=LPoint3f(xPos, 0, zPos),
+            pos=LPoint3(xPos, 0, zPos),
             text = name,
             text_scale=12,
             text_pos=(0,-40),
@@ -536,33 +536,33 @@ class DirectFolderBrowser(DirectObject):
             self.mainFrame["frameSize"] = (-self.screenWidthPxHalf,self.screenWidthPxHalf,-self.screenHeightPxHalf,self.screenHeightPxHalf)
 
             self.pathEntryWidth = self.screenWidthPx - self.pathRightMargin
-            self.pathEntry.setPos(LPoint3f(-self.screenWidthPxHalf + 15, 0, self.screenHeightPxHalf - 25))
+            self.pathEntry.setPos(LPoint3(-self.screenWidthPxHalf + 15, 0, self.screenHeightPxHalf - 25))
             self.pathEntry["width"] = self.pathEntryWidth/12
             self.pathEntry.resetFrameSize()
 
             # reposition top right icons
             x = self.pathEntryWidth/2-28
-            self.btnReload.setPos(LPoint3f(x, 0, self.screenHeightPxHalf - 25))
+            self.btnReload.setPos(LPoint3(x, 0, self.screenHeightPxHalf - 25))
             x += 28
-            self.btnFolderUp.setPos(pos=LPoint3f(x, 0, self.screenHeightPxHalf - 25))
+            self.btnFolderUp.setPos(pos=LPoint3(x, 0, self.screenHeightPxHalf - 25))
             x += 28
-            self.btnFolderNew.setPos(pos=LPoint3f(x, 0, self.screenHeightPxHalf - 25))
+            self.btnFolderNew.setPos(pos=LPoint3(x, 0, self.screenHeightPxHalf - 25))
             x += 28
-            self.btnFolderShowHidden.setPos(pos=LPoint3f(x, 0, self.screenHeightPxHalf - 25))
+            self.btnFolderShowHidden.setPos(pos=LPoint3(x, 0, self.screenHeightPxHalf - 25))
 
             # resize the browsing area
             self.container["frameSize"] = (-self.screenWidthPxHalf+10, self.screenWidthPxHalf-10, -self.screenHeightPxHalf+50, self.screenHeightPxHalf-50)
             # Note: canvas size of the container will be reset in the
             #       folder Reload call at the end of this function
-            self.btnOk.setPos(LPoint3f(self.screenWidthPxHalf-160, 0, -self.screenHeightPxHalf+25))
-            self.btnCancel.setPos(LPoint3f(self.screenWidthPxHalf-55, 0, -self.screenHeightPxHalf+25))
+            self.btnOk.setPos(LPoint3(self.screenWidthPxHalf-160, 0, -self.screenHeightPxHalf+25))
+            self.btnCancel.setPos(LPoint3(self.screenWidthPxHalf-55, 0, -self.screenHeightPxHalf+25))
             if self.showFiles:
-                self.txtFileName.setPos(LPoint3f(-self.screenWidthPxHalf+25, 0, -self.screenHeightPxHalf+25))
-            self.newFolderFrame.setPos(LPoint3f(0, 0, self.screenHeightPxHalf-55))
+                self.txtFileName.setPos(LPoint3(-self.screenWidthPxHalf+25, 0, -self.screenHeightPxHalf+25))
+            self.newFolderFrame.setPos(LPoint3(0, 0, self.screenHeightPxHalf-55))
             self.newFolderFrame["frameSize"] = (-self.screenWidthPxHalf+10,self.screenWidthPxHalf-10,-20,20)
             self.txtNewFolderName.setPos(-self.screenWidthPxHalf+15, 0, -3)
-            self.folderName.setPos(LPoint3f(-self.screenWidthPxHalf+25 + self.txtNewFolderName.getWidth(), 0, -4))
+            self.folderName.setPos(LPoint3(-self.screenWidthPxHalf+25 + self.txtNewFolderName.getWidth(), 0, -4))
             self.folderName["width"]=((self.screenWidthPxHalf-25)*2-self.txtNewFolderName.getWidth() - 100)/12
-            self.btnCreate.setPos(LPoint3f(self.screenWidthPxHalf-65, 0, -4))
+            self.btnCreate.setPos(LPoint3(self.screenWidthPxHalf-65, 0, -4))
 
             self.folderReload()
