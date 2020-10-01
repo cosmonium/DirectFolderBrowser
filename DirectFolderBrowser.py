@@ -37,7 +37,7 @@ defaultIcons = {
     }
 
 class DirectFolderBrowser(DirectObject):
-    def __init__(self, command, fileBrowser=False, defaultPath="~", defaultFilename="unnamed.txt", fileExtensions=[], tooltip=None, icons=defaultIcons):
+    def __init__(self, command, size=None, parent=None, fileBrowser=False, defaultPath="~", defaultFilename="unnamed.txt", fileExtensions=[], tooltip=None, icons=defaultIcons):
         """
         A simple file and folder browser
 
@@ -60,17 +60,20 @@ class DirectFolderBrowser(DirectObject):
             self.currentPath = os.path.expanduser("~")
         self.previousPath = self.currentPath
 
-        self.screenWidthPx = base.getSize()[0]
+        if size is not None:
+            (self.screenWidthPx, self.screenHeightPx) = size
+        else:
+            self.screenWidthPx = base.getSize()[0]
+            self.screenHeightPx = base.getSize()[1]
         self.screenWidthPxHalf = self.screenWidthPx * 0.5
-        self.screenHeightPx = base.getSize()[1]
         self.screenHeightPxHalf = self.screenHeightPx * 0.5
 
         self.mainFrame = DirectFrame(
             relief=1,
             frameSize=(-self.screenWidthPxHalf,self.screenWidthPxHalf,-self.screenHeightPxHalf,self.screenHeightPxHalf),
             frameColor=(1, 1, 1, 1),
-            pos=LPoint3(base.getSize()[0]/2, 0, -base.getSize()[1]/2),
-            parent=base.pixel2d,
+            pos=LPoint3(self.screenWidthPxHalf, 0, -self.screenHeightPxHalf),
+            parent=parent or base.pixel2d,
             state=DGG.NORMAL,
         )
 
@@ -306,8 +309,9 @@ class DirectFolderBrowser(DirectObject):
         self.folderReload()
 
         # handle window resizing
-        self.prevScreenSize = base.getSize()
-        self.accept("window-event", self.windowEventHandler)
+        if parent is None:
+            self.prevScreenSize = base.getSize()
+            self.accept("window-event", self.windowEventHandler)
 
     def show(self):
         self.mainFrame.show()
